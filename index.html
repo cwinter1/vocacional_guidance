@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0e1116">
+<title>מדריך מקצועי · Career Guidance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: #0e1116; font-family: 'Manrope', system-ui, sans-serif; color: #e8e5dd; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+:root {
+  --bg:       #0e1116;
+  --fg:       #e8e5dd;
+  --sub:      #8a8478;
+  --card:     #16191e;
+  --card2:    #1c1f25;
+  --accent:   #7aa676;
+  --accentT:  #0e1116;
+  --hair:     rgba(255,255,255,0.10);
+  --pill:     rgba(255,255,255,0.06);
+  --mono:     rgba(232,229,221,0.55);
+  --display:  "Space Grotesk", system-ui, sans-serif;
+  --body:     "Manrope", system-ui, sans-serif;
+  --mono-ff:  "JetBrains Mono", ui-monospace, monospace;
+  --serif:    "Instrument Serif", Georgia, serif;
+  --radius:   8px;
+}
+
+@keyframes rise  { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.03); } }
+
+.screen { display:none; animation:rise .3s ease; }
+.screen.active { display:block; }
+
+/* ── SHARED LAYOUT ── */
+.page { max-width: 680px; margin: 0 auto; padding: 32px 20px 60px; }
+.mono-label {
+  font-family: var(--mono-ff);
+  font-size: 10px;
+  color: var(--mono);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.section-title {
+  font-family: var(--mono-ff);
+  font-size: 10px;
+  color: var(--mono);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.section-title::after { content:''; flex:1; height:1px; background:var(--hair); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--accentT);
+  border-radius: 6px;
+  padding: 16px 22px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--hair);
+  color: var(--fg);
+  border-radius: 6px;
+  padding: 13px 18px;
+  font-family: var(--mono-ff);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-ghost:hover { background: var(--pill); }
+
+/* ════════════════════════════════
+   WELCOME SCREEN
+════════════════════════════════ */
+#screen-welcome .hero-label {
+  font-family: var(--mono-ff);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+#screen-welcome h1 {
+  font-family: var(--display);
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: -1.5px;
+  margin-bottom: 6px;
+}
+#screen-welcome h1 .accent { color: var(--accent); }
+#screen-welcome .sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--sub);
+  margin: 18px 0 32px;
+  line-height: 1.4;
+}
+.welcome-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.chip {
+  background: var(--pill);
+  border: 1px solid var(--hair);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: var(--mono-ff);
+  font-size: 11px;
+  color: var(--sub);
+  letter-spacing: 1px;
+}
+
+/* ════════════════════════════════
+   GLOSSARY SCREEN
+════════════════════════════════ */
+#screen-glossary h2 {
+  font-family: var(--display);
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.8px;
+  margin-bottom: 6px;
+}
+#screen-glossary .sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--sub);
+  margin-bottom: 28px;
+  line-height: 1.45;
+}
+.glossary-item {
+  border-bottom: 1px solid var(--hair);
+  padding: 16px 0;
+}
+.glossary-item:last-child { border-bottom: none; }
+.glossary-term {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.glossary-def {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+.glossary-bank {
+  font-family: var(--mono-ff);
+  font-size: 11px;
+  color: var(--mono);
+  letter-spacing: 1px;
+}
+.glossary-bank::before { content: "בנקאות: "; color: var(--accent); opacity: 0.7; }
+
+/* ════════════════════════════════
+   ROLES SCREEN
+════════════════════════════════ */
+#screen-roles h2 {
+  font-family: var(--display);
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.8px;
+  margin-bottom: 6px;
+}
+#screen-roles .sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--sub);
+  margin-bottom: 28px;
+  line-height: 1.45;
+}
+.role-card {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.role-card-header {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.role-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.role-meta { flex: 1; }
+.role-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  margin-bottom: 3px;
+}
+.role-title-en {
+  font-family: var(--mono-ff);
+  font-size: 10px;
+  color: var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.role-badges {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.badge {
+  font-family: var(--mono-ff);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 3px;
+  border: 1px solid;
+}
+.badge-green { color: var(--accent); border-color: var(--accent); opacity: 0.8; }
+.badge-yellow { color: #c8a850; border-color: #c8a850; opacity: 0.8; }
+.badge-red { color: #c85a5a; border-color: #c85a5a; opacity: 0.8; }
+.role-expand {
+  display: none;
+  padding: 0 18px 18px;
+  border-top: 1px solid var(--hair);
+}
+.role-expand.open { display: block; }
+.role-summary {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--fg);
+  margin: 14px 0 12px;
+}
+.role-day-label {
+  font-family: var(--mono-ff);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.role-day-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.role-day-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.role-day-list li::before {
+  content: '·';
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.role-note {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--pill);
+  border-radius: 5px;
+  font-family: var(--mono-ff);
+  font-size: 11px;
+  color: var(--mono);
+  letter-spacing: 0.8px;
+  line-height: 1.5;
+}
+.chevron {
+  transition: transform 0.2s;
+  color: var(--mono);
+  font-size: 12px;
+}
+.role-card.open .chevron { transform: rotate(180deg); }
+
+/* ════════════════════════════════
+   QUIZ SCREEN
+════════════════════════════════ */
+.quiz-header {
+  padding: 20px 20px 0;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.progress-bar-wrap {
+  flex: 1;
+  height: 4px;
+  background: var(--pill);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.progress-count {
+  font-family: var(--mono-ff);
+  font-size: 11px;
+  color: var(--mono);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.section-tag {
+  font-family: var(--mono-ff);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.quiz-body {
+  padding: 10px 20px 60px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.question-text {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.question-context {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--sub);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.answer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.answer-btn {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-radius: 6px;
+  padding: 14px 16px;
+  text-align: right;
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: border-color 0.15s, background 0.15s;
+}
+.answer-btn:hover { border-color: var(--accent); background: var(--card2); }
+.answer-btn.selected {
+  border-color: var(--accent);
+  background: rgba(122,166,118,0.1);
+}
+.answer-letter {
+  font-family: var(--mono-ff);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.answer-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fg);
+}
+.quiz-nav {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: linear-gradient(to top, #0e1116 60%, transparent);
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ════════════════════════════════
+   RESULTS SCREEN
+════════════════════════════════ */
+#screen-results h2 {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+}
+#screen-results .sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--sub);
+  margin-bottom: 28px;
+  line-height: 1.45;
+}
+.result-match {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.result-match.top {
+  border-color: var(--accent);
+  background: rgba(122,166,118,0.07);
+}
+.result-rank {
+  font-family: var(--mono-ff);
+  font-size: 10px;
+  color: var(--mono);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.result-match.top .result-rank { color: var(--accent); }
+.result-role-name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.score-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.score-bar-wrap {
+  flex: 1;
+  height: 6px;
+  background: var(--pill);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+}
+.score-pct {
+  font-family: var(--mono-ff);
+  font-size: 13px;
+  color: var(--accent);
+  width: 36px;
+  text-align: left;
+}
+.result-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--sub);
+  margin-bottom: 14px;
+}
+.result-steps-label {
+  font-family: var(--mono-ff);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.result-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.result-steps li {
+  font-size: 13px;
+  line-height: 1.4;
+  display: flex;
+  gap: 8px;
+}
+.result-steps li::before { content:'→'; color:var(--accent); flex-shrink:0; }
+
+.filter-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.filter-table th {
+  font-family: var(--mono-ff);
+  font-size: 10px;
+  color: var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: right;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--hair);
+}
+.filter-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--pill);
+  line-height: 1.4;
+}
+.filter-table tr:last-child td { border-bottom: none; }
+.td-role { font-weight: 600; }
+.td-good { color: var(--accent); font-family: var(--mono-ff); font-size: 11px; }
+.td-warn { color: #c8a850; font-family: var(--mono-ff); font-size: 11px; }
+.td-bad  { color: #c85a5a; font-family: var(--mono-ff); font-size: 11px; }
+</style>
+</head>
+<body>
+
+<!-- ════════ WELCOME ════════ -->
+<div id="screen-welcome" class="screen active">
+  <div class="page">
+    <div class="hero-label">מדריך מקצועי</div>
+    <h1>מה <span class="accent">הצעד</span><br>הבא שלך?</h1>
+    <p class="sub">שאלון שיעזור לך למפות את הכישורים שלך מהבנקאות לתפקיד חדש — בהייטק, בייעוץ, או בחשבונאות.</p>
+    <div class="welcome-chips">
+      <span class="chip">25 שאלות</span>
+      <span class="chip">~20 דקות</span>
+      <span class="chip">12 תפקידים אפשריים</span>
+      <span class="chip">תוצאות מיידיות</span>
+    </div>
+    <button class="btn-primary" onclick="go('screen-glossary')">
+      <span>מתחילים</span>
+      <span>←</span>
+    </button>
+    <div style="margin-top:16px;">
+      <button class="btn-ghost" style="width:100%;text-align:center;justify-content:center;" onclick="go('screen-roles')">מדלגת לתפקידים ←</button>
+    </div>
+    <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--hair);">
+      <p class="mono-label" style="margin-bottom:12px;">מה תקבלי בסוף</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:18px;flex-shrink:0;">🎯</span>
+          <div>
+            <div style="font-weight:600;font-size:14px;margin-bottom:3px;">התאמה אישית לתפקידים</div>
+            <div style="font-size:13px;color:var(--sub);line-height:1.5;">ניקוד לפי 12 תפקידים, עם הסבר מה מתאים לך ולמה</div>
+          </div>
+        </div>
+        <div class="card" style="padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:18px;flex-shrink:0;">⏰</span>
+          <div>
+            <div style="font-weight:600;font-size:14px;margin-bottom:3px;">מסנן שעות ועבודה פיזית</div>
+            <div style="font-size:13px;color:var(--sub);line-height:1.5;">כולל המלצה בהתאם לעדיפות שלך לשעות סדירות ועבודה ממשרד</div>
+          </div>
+        </div>
+        <div class="card" style="padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:18px;flex-shrink:0;">📋</span>
+          <div>
+            <div style="font-weight:600;font-size:14px;margin-bottom:3px;">צעדים ראשונים קונקרטיים</div>
+            <div style="font-size:13px;color:var(--sub);line-height:1.5;">מה לעשות השבוע, כולל קהילות, קורסים, ואנשי קשר ישראליים</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ GLOSSARY ════════ -->
+<div id="screen-glossary" class="screen">
+  <div class="page">
+    <button class="btn-ghost" style="margin-bottom:20px;" onclick="go('screen-welcome')">→ חזרה</button>
+    <h2>מילון<br><span style="color:var(--accent)">הייטק</span></h2>
+    <p class="sub">לפני שמתחילים — המילים שיופיעו בשאלות, עם הגדרה ומקבילה מהבנק.</p>
+
+    <div id="glossary-list"></div>
+
+    <div style="margin-top:32px;">
+      <button class="btn-primary" onclick="go('screen-roles')">
+        <span>לתפקידים</span><span>←</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ ROLES ════════ -->
+<div id="screen-roles" class="screen">
+  <div class="page">
+    <button class="btn-ghost" style="margin-bottom:20px;" onclick="go('screen-glossary')">→ חזרה</button>
+    <h2>12 תפקידים<br><span style="color:var(--accent)">אפשריים</span></h2>
+    <p class="sub">לחצי על כל תפקיד כדי לראות יום עבודה אמיתי. אחרי שתקראי — תעברי לשאלון.</p>
+
+    <div id="roles-list"></div>
+
+    <div style="margin-top:24px;">
+      <button class="btn-primary" onclick="startQuiz()">
+        <span>לשאלון</span><span>←</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ QUIZ ════════ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-header">
+    <div class="progress-row">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="quiz-progress-bar" style="width:0%"></div>
+      </div>
+      <div class="progress-count" id="quiz-progress-count">1 / 25</div>
+    </div>
+    <div class="section-tag" id="quiz-section-tag"></div>
+  </div>
+  <div class="quiz-body" id="quiz-body"></div>
+  <div class="quiz-nav">
+    <button class="btn-ghost" id="quiz-prev" onclick="prevQ()" style="display:none;">→ הקודמת</button>
+    <button class="btn-primary" id="quiz-next" onclick="nextQ()" style="width:auto;padding:14px 24px;">
+      <span id="quiz-next-label">הבאה ←</span>
+    </button>
+  </div>
+</div>
+
+<!-- ════════ RESULTS ════════ -->
+<div id="screen-results" class="screen">
+  <div class="page">
+    <h2>התוצאות<br><span style="color:var(--accent)">שלך</span></h2>
+    <p class="sub">על פי תשובותיך, אלו התפקידים המתאימים לך ביותר.</p>
+    <div id="results-body"></div>
+    <div style="margin-top:32px;">
+      <button class="btn-ghost" style="width:100%;text-align:center;" onclick="startQuiz()">חזרה לשאלון מחדש</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════
+
+const GLOSSARY = [
+  { term:'מנהל/ת מוצר (Product Manager / PM)', def:'האדם שמחליט מה יבנה הצוות הטכנולוגי ומתי — מגדיר צרכים, מתעדף, ומוביל הצלחה.', bank:'מנהל/ת הסניף שמחליט/ה אילו שירותים להציע לקוחות ומתי לשיקם מוצר.' },
+  { term:'מנתח/ת מערכות (Systems Analyst / BA)', def:'הגשר בין הצרכים העסקיים לצוות הפיתוח — מרואיינ/ת בעלי תפקידים, מתעד/ת תהליכים, כותב/ת מפרט.', bank:'איש/ת תפעול שכותב/ת מסמך פונקציונלי לפני שIT מגיע לשנות את מערכת הבנק.' },
+  { term:'Sprint / ספרינט', def:'מחזור עבודה קצר (בד"כ שבועיים) עם תוצרת מוגדרת מראש.', bank:'דד-ליין דו-שבועי לסגירת אצוות פניות לפני הביקורת.' },
+  { term:'Backlog', def:'רשימת כל הפיצ\'רים או המשימות שממתינות לבנייה.', bank:'תור בקשות השינוי הממתינות לוועדת IT.' },
+  { term:'מפרט / PRD', def:'מסמך כתוב המתאר מה פיצ\'ר חדש צריך לעשות.', bank:'נוהל עבודה שכתבת לפני שמוצר הלוואה חדש יצא לסניפים.' },
+  { term:'User Story', def:'משפט קצר: "כמשתמש/ת אני צריכ/ה..." — מתאר צורך בגוף ראשון.', bank:'תרחיש בודק רז\'ש למוצר חדש.' },
+  { term:'QA / בדיקות', def:'תהליך אימות שהמערכת עושה מה שנדרש — דומה ל-UAT בבנק.', bank:'תהליך הבדיקות המקבילות לפני Go-Live.' },
+  { term:'Jira / Azure DevOps', def:'כלי מעקב משימות ופרויקטים.', bank:'מודול ניהול המשימות ב-ERP הבנקאי שלך.' },
+  { term:'Stakeholder', def:'כל מי שמושפע מהפרויקט.', bank:'פקיד/ה, קצין/ת תאימות, ומנהל/ת הסניף — כולם מושפעים משינוי טופס העברה.' },
+  { term:'Agile / Scrum', def:'מתודולוגיית ניהול מבוססת מחזורים קצרים ובדיקות תדירות.', bank:'מעבר מ-"שחרור ענק אחת לחצי שנה" ל"מאמרים שבועיים עם בעלי עניין".' },
+  { term:'ERP (Priority / SAP)', def:'מערכת ניהול ארגונית — בדיוק כמו ה-Core Banking שלך, אבל לחברות שאינן בנקים.', bank:'מקבילה ישירה למערכת הבנקאית המרכזית.' },
+  { term:'מאמן/ת אישי/ת (Life Coach)', def:'מלווה אדם בהחלטות, מטרות ומעברים — ללא רישיון קליני. עבודה פנים אל פנים או בזום.', bank:'כמו הייעוץ הפיננסי שנתת ללקוחות — אבל על החיים, לא על הכסף.' },
+];
+
+const ROLES = [
+  {
+    id:'PM', icon:'🗓', he:'מנהל/ת פרויקטים', en:'Project Manager',
+    hours:'בינוני', office:'בינוני', coding:false,
+    summary:'PM מוביל/ה פרויקט מרגע הרעיון ועד השקה. אין לה/לו סמכות רשמית על המהנדסים — מוביל/ה דרך שכנוע, קשרים, ועדכונים ברורים. בחברת הייטק, PM עשויה לנהל פיצ\'ר חדש לאפליקציית בנקאות: מגדירה דרישות, מתאמת בין עיצוב לפיתוח, ומחזיקה את הלו"ז.',
+    day:['בוקר: Stand-up עם המהנדסים — 15 דקות, כל אחד מדווח על מה תקוע/מה הושלם','עדכון לוח Jira אחרי עיכובים של אתמול','כתיבת עדכון סטטוס לסמנכ"ל שמסביר חריגה של שבועיים','פגישת יישוב מחלוקת בין שיווק (רוצה פיצ\'ר X) לפיתוח (X זה 6 שבועות עבודה)','בדיקת תוכנית הבדיקות של QA ואישור שמוכנים לשחרור'],
+    note:'שנה שכר ישראל: ₪18,000–₪35,000. עולה מהר עם ניסיון.',
+  },
+  {
+    id:'SA', icon:'📋', he:'מנתח/ת מערכות', en:'Systems Analyst',
+    hours:'נמוך', office:'גבוה', coding:false,
+    summary:'מנתח/ת מערכות הוא/היא הגשר בין הצורך העסקי לצוות הפיתוח. מראיינת בעלי תפקידים, ממפה תהליכים, כותבת מפרט מדויק, ואחר כך מאמתת שמה שנבנה תואם את מה שביקשו. לרוב לא כותבת קוד.',
+    day:['ראיון עם צוות האשראי: "הסבירו לי כל שלב באישור הלוואה אישית במערכת הנוכחית"','עריכת מסמך מפרט פונקציונלי עם פקסימילאות מסכים','ישיבה עם מפתח/ת להבהרת מקרה קצה שלא כוסה במפרט','הרצת UAT עם הצד העסקי — אימות שכל שלב עובד כנדרש','עדכון המפרט לאחר שהתגלתה דרישה עמומה'],
+    note:'שנה שכר ישראל: ₪15,000–₪28,000. דרישות ממוצרים פיננסיים — יתרון ענק.',
+  },
+  {
+    id:'BA', icon:'🔀', he:'אנליסט/ית עסקי/ת', en:'Business Analyst',
+    hours:'נמוך', office:'גבוה', coding:false,
+    summary:'תפקיד היברידי בין PM לבין מנתח/ת מערכות. BA בחברת הייטק לרוב גם מתעדת דרישות וגם מנהלת מעקב אחרי לו"ז. זהו אחד מנקודות הכניסה הנפוצות ביותר למחפשי/ות עבודה שעוברים מהבנקאות להייטק.',
+    day:['איסוף דרישות מצוות המכירות לפיצ\'ר חדש','כתיבת User Stories וכניסתן ל-Jira','תיאום בין PM למפתחים כשיש סתירה בין ציפיות לביצוע','הרצת הדגמה של גרסה חדשה ללקוח פנימי','דיווח שבועי לניהול על מצב פרויקטים'],
+    note:'נקודת כניסה מצוינת לעוברות מבנקאות — מחפשות BA עם ידע פיננסי.',
+  },
+  {
+    id:'ERP', icon:'⚙️', he:'יועצ/ת ERP', en:'ERP / Core-Banking Consultant',
+    hours:'בינוני', office:'גבוה', coding:false,
+    summary:'מיישמת מערכות ניהול ארגוניות (Priority, SAP, Temenos) אצל לקוחות. חברות אינטגרציה מגייסות אנשים מהבנקאות כי הם יודעים איך תהליכים פיננסיים עובדים בפועל. הם לא כותבים קוד — הם מקנפגים ומתאימים את המערכת.',
+    day:['ראיון דרישות עם מחלקת הנהלת חשבונות של לקוח','כניסת נתוני פתיחה למערכת Priority','הגדרת תהליך אישור הזמנות בהתאם לתהליך הלקוח','הדרכת עובדים על המודול החדש','כתיבת מסמך Go-Live וצ\'קליסט לפני עליה לאוויר'],
+    note:'גיוס מבנקים — נפוץ מאוד. חברות כמו יוניקורן, Sela Group, Nili מחפשות פרופיל כזה.',
+  },
+  {
+    id:'IMPL', icon:'🚀', he:'מנהל/ת הטמעה', en:'Implementation Manager',
+    hours:'נמוך', office:'גבוה', coding:false,
+    summary:'מלווה לקוחות עסקיים בתהליך הקליטה של מוצר תוכנה. עבודה תהליכית מאוד, ללא כתיבת קוד, עם הרבה עבודה מול לקוחות. מתאים מצוין למי שאוהבת לעבוד עם אנשים ומערכות גם יחד.',
+    day:['פגישת Kick-off עם לקוח חדש — מיפוי תהליכים נוכחיים','הגדרת לו"ז הטמעה ואבני דרך','תיאום בין צוות הפיתוח לבין הלקוח על שינויים במוצר','הדרכת מנהלים על מסך החיפוש המרכזי','אימות ש-Go-Live עבר בהצלחה ותיעוד בעיות פתוחות'],
+    note:'שעות יציבות מאוד. נפוץ בחברות SaaS ישראליות כמו Monday, Tipalti, Papaya.',
+  },
+  {
+    id:'CSM', icon:'🤝', he:'מנהל/ת הצלחת לקוח', en:'Customer Success Manager',
+    hours:'נמוך', office:'בינוני', coding:false,
+    summary:'עוזרת ללקוחות קיימים להפיק ערך מהמוצר, מונעת נטישה, ומגדילה הכנסות מלקוחות. עבודה יחסים-מרכזית, עם הרבה ישיבות ומעקב. מתאים מאוד למי שמחזיקה ביחסי לקוחות מנסיון הבנק.',
+    day:['שיחת Business Review רבעונית עם לקוח מפתח','ניתוח נתוני שימוש — מי לא משתמשת בפיצ\'ר המרכזי','שליחת מייל עם טיפ שימוש מותאם ללקוח','פגישה פנימית עם PM להעביר Feedback מהשטח','תיעוד סיכום פגישה ב-CRM'],
+    note:'שכר: ₪14,000–₪22,000 + בונוסים. נפוץ בחברות פינטק ו-SaaS.',
+  },
+  {
+    id:'REGTECH', icon:'📊', he:'אנליסט/ית תאימות / RegTech', en:'RegTech / Compliance Analyst',
+    hours:'נמוך', office:'גבוה', coding:false,
+    summary:'עובדת בחברות טכנולוגיה שבונות פתרונות AML/KYC לבנקים ולמוסדות פיננסיים. הניסיון הבנקאי שלך — ידע בדיני בנקאות, נהלי AML, דרישות בנק ישראל — הוא פרמיום נדיר בחברות אלו.',
+    day:['קריאת עדכוני רגולציה מבנק ישראל / EBA','תרגום הוראת AML חדשה לדרישות מוצר פנימיות','ישיבה עם מפתחי המוצר להסביר מה הרגולטור דורש','כתיבת מסמך Compliance Gap לפני השקת מוצר','עדכון מסמך מדיניות פנימית'],
+    note:'ידע בנקאי = יתרון מוחלט. חברות: Senofi, Fourthline, Nect, Nice Actimize.',
+  },
+  {
+    id:'DATA', icon:'📈', he:'אנליסט/ית נתונים', en:'Data Analyst',
+    hours:'נמוך', office:'בינוני', coding:'SQL + Excel',
+    summary:'בונה דשבורדים, מנתחת מגמות, ועונה על שאלות עסקיות באמצעות נתונים. אקסל מתקדמת היא נקודת התחלה — הצעד הבא הוא SQL בסיסי ו-Power BI. מתאים למי שאוהבת לחקור מספרים ולמצוא סיבות.',
+    day:['הורדת דו"ח מכירות יומי וזיהוי חריגות','בניית טבלת Pivot לדשבורד מנהלים','כתיבת שאילתת SQL פשוטה לחילוץ נתוני לקוחות פעילים','ישיבה עם PM להצגת ממצאי שבוע','עדכון גרף מגמות חודשי'],
+    note:'כניסה: Excel מתקדם → קורס SQL בסיסי (3-4 חודשים) → Power BI.',
+  },
+  {
+    id:'QA', icon:'🔬', he:'בודק/ת איכות (QA)', en:'QA / UAT Specialist',
+    hours:'נמוך', office:'גבוה', coding:false,
+    summary:'בודקת שמה שנבנה תואם למה שנדרש. עבודה שיטתית מאוד, לא כותבת קוד (ב-QA ידני), ומקבלת ניסיון עמוק בהבנת מערכות. זהו בדיוק מה שעשית כשעלתה מערכת חדשה בבנק — UAT.',
+    day:['קריאת מסמך המפרט לפני בדיקה','כתיבת תוכנית בדיקות — רשימת תרחישים לכיסוי','הרצת בדיקות מקבילות ותיעוד הבדלים','פתיחת Bug בJira עם פירוט מדויק של הצעדים לשחזור','בדיקת Regression אחרי תיקון — וידוא שלא שברנו משהו אחר'],
+    note:'כניסה קלה למי עם רקע UAT בבנק. שכר ₪12,000–₪20,000.',
+  },
+  {
+    id:'SCRUM', icon:'🔄', he:'מנחה Scrum', en:'Scrum Master / Agile Coach',
+    hours:'נמוך', office:'בינוני', coding:false,
+    summary:'מנחה את הצוות בתהליך Agile — מנהלת טקסים, מסירה חסמים, ומבטיחה שהמחזור הקצר עובד. פחות ניהול, יותר הנחייה. מתאים מאוד למי שאוהבת תהליכים וסדר.',
+    day:['Stand-up יומי — 15 דקות, כולם מדווחים','Sprint Planning — תיכנון המשימות לשבועיים הקרובים','Retrospective — מה עבד, מה לא, מה משנים','הסרת חסמים: תיאום בין מחלקות כדי שהמפתחים יוכלו להמשיך לעבוד','עדכון לו"ז Burndown ל-PM'],
+    note:'הסמכה: CSM (Certified Scrum Master) — קורס 2 ימים + בחינה. ~$400.',
+  },
+  {
+    id:'COACH', icon:'💬', he:'מאמן/ת אישי/ת', en:'Life / Career Coach',
+    hours:'נמוך', office:'גבוה*', coding:false,
+    summary:'מלווה אנשים בהחלטות גדולות — קריירה, מעברים, מטרות. אין צורך ברישיון קליני. הניסיון שלך כבנקאית שליוותה לקוחות בהחלטות פיננסיות חשובות הוא בסיס מצוין. אפשר לעסוק בקואצ\'ינג פיננסי בנוסף.',
+    day:['פגישת אימון 60 דקות עם לקוח/ה בעניין מעבר קריירה','כתיבת סיכום פגישה ומטלות לשבוע הבא','הכנת סשן קבוצתי בנושא ניהול כסף ומטרות','שיחת מכירה עם לקוח/ה פוטנציאלי/ת','עדכון חומרי הדרכה לסדנה חודשית'],
+    note:'* לרוב פרילנס. לעבודה ממשרד — חפשי מרכזי אימון, ארגונים עסקיים, או HR קורפורייט.',
+  },
+  {
+    id:'CPA', icon:'🧾', he:'מסלול רואה חשבון', en:'CPA Track',
+    hours:'גבוה (עונה)', office:'גבוה', coding:false,
+    summary:'מסלול עם סולם הסמכה ברור: התמחות → בחינות רו"ח → רו"ח מוסמך/ת → בכיר/ה → שותף/ה. עבודה על ביקורת, מס, וייעוץ פיננסי. הרקע הבנקאי שלך — בעיקר אם עבדת על נהלי ביקורת, אשראי, או דיווח — הוא יתרון.',
+    day:['בדיקת ספר הנהלת חשבונות של לקוח לאיתור חריגות','הכנת פיוס בין ספרי הלקוח לתדפיס הבנק','כתיבת מזכר המסביר טיפול חשבונאי ללקוח','ישיבת לקוח לבקשת מסמכים חסרים','לימוד לבחינת רו"ח (בתקופת ההתמחות)'],
+    note:'⚠️ עונת שיא (פברואר–אפריל ✕ שנה-סוף): 55–65 שעות שבועיות. שאר השנה: ~45 שעות.',
+  },
+];
+
+// ════════════════════════════════════════════
+// QUESTIONS
+// ════════════════════════════════════════════
+// Each answer is an array of role IDs it signals toward
+
+const SECTIONS = [
+  'א — תגובה לשינוי ועמימות',
+  'ב — אנשים מול מערכות',
+  'ג — סמכות ואי-ודאות',
+  'ד — סגנון עבודה',
+  'ה — מיפוי כישורים מהבנק',
+];
+
+const QUESTIONS = [
+  // SECTION A (Q0-Q4)
+  {
+    s:0,
+    q:'כשהגיעה רגולציה חדשה לבנק (למשל דרישת AML חדשה), מה היה האינסטינקט הראשון שלך?',
+    ctx:'',
+    opts:[
+      { t:'רציתי להבין בדיוק אילו סוגי עסקאות יושפעו ולמפות כל מקרה קצה לפני שנוגעים במשהו', r:['SA','BA','REGTECH'] },
+      { t:'רציתי לדעת מי צריך לאשר, לבנות תוכנית עבודה, ולוודא שכל מחלקה עומדת בדד-ליין', r:['PM','BA','IMPL'] },
+      { t:'הכי נוח לי כשהחוקים כתובים ואני יכולה ליישם אותם בצורה עקבית', r:['CPA','QA','REGTECH'] },
+      { t:'חשבתי אם הרגולציה הגיונית, ואיך לפרש אותה בצורה שתועיל לבנק', r:['REGTECH','CPA','SA'] },
+    ],
+  },
+  {
+    s:0,
+    q:'המנהל/ת שלך אומר/ת: "תשפרי את תהליך קבלת הלקוחות — תסתכלי בזה." מה עושים ראשון?',
+    ctx:'',
+    opts:[
+      { t:'קובעת ראיונות עם פקידים ומנהלי סניפים כדי להבין מה שבור היום, אחר כך ממפה את התהליך הקיים', r:['SA','BA','DATA'] },
+      { t:'מכינה תוכנית פרויקט עם אבני דרך ומזהה איזה צוותים מעורבים', r:['PM','BA','IMPL'] },
+      { t:'מבקשת מהמנהל/ת הגדרה ברורה יותר של מה "שיפור" אומר — צ\'קליסט ברור', r:['CPA','QA'] },
+      { t:'עושה בנצ\'מרק — מה בנקים אחרים עושים — ומביאה דו"ח השוואה', r:['DATA','SA','REGTECH'] },
+    ],
+  },
+  {
+    s:0,
+    q:'מיגרציית מערכת עוכבה בשלוש שבועות כי IT גילתה בעיית נתונים. מה תגובתך?',
+    ctx:'',
+    opts:[
+      { t:'מבקשת מ-IT להסביר לי את בעיית הנתונים לעומק — רוצה להבין את שורש הבעיה', r:['SA','DATA','REGTECH'] },
+      { t:'מיד מעדכנת את הלו"ז, מודיעה לבעלי העניין על העיכוב, ומזהה מה אפשר להמשיך לעשות בינתיים', r:['PM','IMPL','BA'] },
+      { t:'ממתינה ש-IT יפתרו את זה — זה לא הנקודה שלי, אני מתעדת כשמוכן', r:['QA','CPA'] },
+      { t:'מסלימה לניהול ומבקשת החלטה פורמלית האם להמשיך או לעצור', r:['PM','SCRUM'] },
+    ],
+  },
+  {
+    s:0,
+    q:'בסוף פרויקט גדול, מה הכי מספק אותך?',
+    ctx:'',
+    opts:[
+      { t:'המפרט היה מדויק — המערכת עושה בדיוק מה שביקשנו, ללא הפתעות', r:['SA','QA','BA'] },
+      { t:'הפרויקט נמסר בזמן והצוות נשאר לכוד לאורך כל הדרך', r:['PM','SCRUM','IMPL'] },
+      { t:'המספרים מסתדרים, התיעוד מושלם, והביקורת עברה ללא הערות', r:['CPA','DATA'] },
+      { t:'המוצר ששחררנו בשימוש אמיתי ואנשים אוהבים אותו', r:['PM','CSM','COACH'] },
+    ],
+  },
+  {
+    s:0,
+    q:'עמיתה מגיעה: "יש משהו מוזר בחישוב הריבית של ה-29 בחודש." את:',
+    ctx:'',
+    opts:[
+      { t:'מבקשת ממנה להראות לי את הצעדים, מנסה לשחזר את הבעיה לבד, ומתחילה למפות מה הלוגיקה אמורה לעשות', r:['SA','DATA','QA'] },
+      { t:'מוצאת מי אחראי על המערכת, פותחת קריאה, ועוקבת עד לפתרון', r:['PM','IMPL','SCRUM'] },
+      { t:'בודקת אם יש נוהל ידוע לטיפול בחריגות סוף חודש', r:['CPA','QA'] },
+      { t:'מתעדת את האנומליה, הסיבה הצפויה, ופתרון מוצע, ומחלקת לצוות', r:['SA','BA','REGTECH'] },
+    ],
+  },
+  // SECTION B (Q5-Q9)
+  {
+    s:1,
+    q:'ביום טיפוסי, מה הכי מטעין אותך אנרגית?',
+    ctx:'',
+    opts:[
+      { t:'סיום מסמך מורכב שמסביר תהליך בלגן בצורה ברורה', r:['SA','BA','CPA'] },
+      { t:'ניהול פגישה פרודוקטיבית שבה אנשים הגיעו להחלטה', r:['PM','SCRUM','BA'] },
+      { t:'סגירת חשבונות — הכל מסתדר, כולל אגורה', r:['CPA','DATA'] },
+      { t:'הדרכת עמית/ה על כלי או מערכת שאת מכירה טוב', r:['IMPL','COACH','ERP'] },
+    ],
+  },
+  {
+    s:1,
+    q:'חשבי על פעם שהיה לך בעל עניין קשה (למשל מנהל סניף שסירב לשנות נוהל). מה עשית?',
+    ctx:'',
+    opts:[
+      { t:'הצגתי את הנוהל הקיים לצד השינוי המוצע — הראיתי בדיוק מה ישתנה ומה לא', r:['SA','BA','REGTECH'] },
+      { t:'קיימתי כמה שיחות אישיות, הבנתי מה הדאגה האמיתית שלו, ומצאתי פשרה', r:['PM','CSM','COACH'] },
+      { t:'הסלמתי למנהל/ת שלי והשארתי לניהול לפתור', r:['QA','CPA'] },
+      { t:'נתתי לעניין להבשיל עד שהדד-ליין אילץ החלטה', r:['QA'] },
+    ],
+  },
+  {
+    s:1,
+    q:'בעבודה עם קבוצה בין-מחלקתית (IT, תאימות, תפעול), לאיזה תפקיד את נמשכת?',
+    ctx:'',
+    opts:[
+      { t:'מי שרושמת פרוטוקול, מסכמת החלטות, ומחלקת דקות הפגישה', r:['SA','BA','QA'] },
+      { t:'מי שמגדירה את סדר היום, מנהלת את הפגישה, ומחלקת משימות', r:['PM','SCRUM','IMPL'] },
+      { t:'מי שמעלה את הסוגיה הטכנית/רגולטורית שכולם פספסו', r:['REGTECH','SA','QA'] },
+      { t:'מי ששואלת "אז מה אנחנו מחליטים היום?" ודוחפת לסגירה', r:['PM','BA','SCRUM'] },
+    ],
+  },
+  {
+    s:1,
+    q:'איך את מרגישה לגבי הצגה בפני ניהול בכיר?',
+    ctx:'',
+    opts:[
+      { t:'לא אוהבת, אבל אעשה זאת כשצריך', r:['SA','QA','DATA'] },
+      { t:'בנוח עם זה — זה חלק מהתפקיד', r:['PM','CSM','COACH'] },
+      { t:'מעדיפה להכין את הסיכום ולתת למישהו אחר להציג', r:['SA','QA','CPA'] },
+      { t:'אוהבת כשהתוכן מבוסס נתונים ואני יכולה להוביל דרך המספרים', r:['DATA','CPA','REGTECH'] },
+    ],
+  },
+  {
+    s:1,
+    q:'עמיתה שעברה מהבנק לחברת הייטק כמנתחת מערכות אומרת: "הדבר הכי טוב: אני מרואיינת אנשים ומהפכת שיחות עמומות לדיאגרמות ברורות." האם זה נשמע מושך?',
+    ctx:'',
+    opts:[
+      { t:'כן — זה בדיוק מה שהייתי רוצה לעשות כל היום', r:['SA','BA'] },
+      { t:'חלקית — אבל הייתי רוצה גם סמכות להחליט מה לעבוד עליו', r:['PM','BA'] },
+      { t:'לא ממש — מעדיפה כללים מוגדרים על פני חילוץ אותם משיחות', r:['CPA','QA','ERP'] },
+      { t:'נשמע בסדר, אבל הייתי רוצה להיות יותר מעורבת בביצוע עצמו', r:['ERP','IMPL','QA'] },
+    ],
+  },
+  // SECTION C (Q10-Q14)
+  {
+    s:2,
+    q:'כ-PM, יש לך הרבה השפעה על מה שיבנה, אבל המהנדסים לא דווחים אלייך. הם יכולים לסרב. איך זה נשמע?',
+    ctx:'',
+    opts:[
+      { t:'בסדר — אני נוחה להוביל דרך שכנוע ומערכות יחסים', r:['PM','IMPL','CSM'] },
+      { t:'מתסכל — מעדיפה מסגרת סמכות ברורה', r:['CPA','QA','REGTECH'] },
+      { t:'אסתדר עם זה אם המפתחים ישתפו פעולה', r:['BA','SCRUM','SA'] },
+      { t:'אמצא דרכים לעקוף — אסלים אם צריך', r:['PM','BA'] },
+    ],
+  },
+  {
+    s:2,
+    q:'מוצר שקידמת מבוטל באמצע — העסק שינה כיוון. איך את מתמודדת?',
+    ctx:'',
+    opts:[
+      { t:'מקבלת את זה כחלק מהמציאות — אני מעבירה את האנרגיה לפרויקט הבא', r:['PM','IMPL','CSM'] },
+      { t:'קשה לי — אני משקיעה הרבה ובייטולים כואבים', r:['COACH','QA'] },
+      { t:'רוצה להבין בדיוק למה כדי לא לחזור על זה בפעם הבאה', r:['SA','DATA','REGTECH'] },
+      { t:'אדחוף להבין האם ההחלטה מבוססת לפני שאקבל', r:['PM','BA','REGTECH'] },
+    ],
+  },
+  {
+    s:2,
+    q:'בסטארטאפ, עדיפויות משתנות כל שבוע וה"כיוון" לא תמיד ברור. איך זה נשמע?',
+    ctx:'',
+    opts:[
+      { t:'מעניין — אוהבת סביבות שזזות מהר', r:['PM','BA','CSM'] },
+      { t:'מקובל כל עוד יש לי מנדט ברור מספיק לעשות את עבודתי', r:['PM','IMPL','SA'] },
+      { t:'לא נוח — עובדת הכי טוב כשיש כללים ברורים', r:['CPA','QA','REGTECH'] },
+      { t:'אחפש חברה עם מספיק מבנה כך שהעבודה לא תרגיש כאוטית', r:['ERP','IMPL','CPA'] },
+    ],
+  },
+  {
+    s:2,
+    q:'גילית ליקוי בתהליך שלא את אחראית עליו. השם שלך לא על זה. את מעלה את זה?',
+    ctx:'',
+    opts:[
+      { t:'כן — ומתעדת את הליקוי, מציעה תיקון, ומוסרת לאחראית', r:['SA','BA','REGTECH'] },
+      { t:'כן — אעלה בפגישה הבאה ואציע שיתנהל בצורה רשמית', r:['PM','SCRUM'] },
+      { t:'רק אם זה נוגע לעבודה שלי ישירות', r:['QA','CPA'] },
+      { t:'אעלה פעם אחת ואשאיר לבעלת התהליך לטפל', r:['QA','CPA'] },
+    ],
+  },
+  {
+    s:2,
+    q:'עמיתה ג\'וניורית כתבה מסמך דרישות עם שלושה מקומות עמומים. מה עושים?',
+    ctx:'',
+    opts:[
+      { t:'יושבת איתה, עוברת על כל עמימות, ועוזרת לה לנסח מחדש — זה חלק מהתפקיד', r:['SA','BA','SCRUM'] },
+      { t:'מוסיפה תגובה במסמך ומחזירה לה עם דד-ליין לתיקון', r:['PM','IMPL'] },
+      { t:'מתקנת את שלושת הסעיפים בעצמי — יותר מהיר', r:['SA','QA'] },
+      { t:'מעלה בפגישה הקרובה כדי שהצוות יבין את הסטנדרט', r:['PM','SCRUM','COACH'] },
+    ],
+  },
+  // SECTION D (Q15-Q19)
+  {
+    s:3,
+    q:'מה מתאר הכי טוב את אופן העבודה המועדף עלייך?',
+    ctx:'',
+    opts:[
+      { t:'שילוב של עבודה מעמיקה לבד (כתיבה/ניתוח) עם ישיבות מתוכננות', r:['SA','BA','CPA','DATA'] },
+      { t:'בעיקר ישיבות ותיאומים עם בלוקים קצרים של עבודה עצמאית', r:['PM','SCRUM','CSM'] },
+      { t:'בעיקר עבודה עצמאית, ממוקדת, עם מינימום ישיבות', r:['CPA','DATA','QA'] },
+      { t:'גמישות מלאה — אני מסתגלת למה שהפרויקט דורש', r:['IMPL','BA','ERP'] },
+    ],
+  },
+  {
+    s:3,
+    q:'תארי בשניים-שלושה משפטים את הפרויקט המספק ביותר שעבדת עליו בבנק. מה היה תפקידך?',
+    ctx:'💡 אם תיארת "הבנתי איך המערכת עובדת" / "כתבתי את הנוהל" — זה מצביע על מנתח/ת מערכות. אם תיארת "שמרתי שהכל יהיה בזמן" / "קיימתי את כולם ביחד" — זה מצביע על PM.',
+    opts:[
+      { t:'תפקידי היה להבין לעומק איך תהליך / מערכת עובדים ולתעד אותם', r:['SA','BA','ERP'] },
+      { t:'תפקידי היה לתאם בין מחלקות ולוודא שכולם עומדים ביעדים', r:['PM','IMPL','SCRUM'] },
+      { t:'תפקידי היה לנתח את הנתונים ולהציג תמונה ברורה לניהול', r:['DATA','CPA','REGTECH'] },
+      { t:'תפקידי היה ללוות אנשים בתהליך — להסביר, ללמד, לתמוך', r:['COACH','CSM','IMPL'] },
+    ],
+  },
+  {
+    s:3,
+    q:'מטלות פתוחות ("שפרי את זה") לעומת מדויקות ("פייסי את החשבונות") — מה עדיף לך?',
+    ctx:'',
+    opts:[
+      { t:'מאוד מעדיפה מדויקות — כללים ברורים, תוצאה ידועה', r:['CPA','QA','ERP'] },
+      { t:'מעדיפה שילוב — קצת מבנה, קצת מרחב לפתרון יצירתי', r:['BA','SA','IMPL'] },
+      { t:'מעדיפה פתוחות — אני אוהבת להגדיר את הבעיה בעצמי', r:['PM','COACH','DATA'] },
+      { t:'יכולה לעשות את שניהם, אבל מתקדרת מהר ממטלות טהורות של כתיבה', r:['PM','CSM','SCRUM'] },
+    ],
+  },
+  {
+    s:3,
+    q:'בנוגע לשעות עבודה — מה הכי חשוב לך?',
+    ctx:'',
+    opts:[
+      { t:'9–18 קבועות עם חריגות נדירות מאוד — שעות נוספות הן קו אדום', r:['CPA_RISK','QA','SA'] },
+      { t:'בגדול צפוי, עם קראנץ\' אחת לכמה חודשים סביב שחרורים', r:['PM','BA','IMPL'] },
+      { t:'מוכנה לשלושה-ארבעה חודשי עומס בשנה אם שאר השנה שקטה', r:['CPA','REGTECH'] },
+      { t:'שעות פחות חשובות מאיכות העבודה — אני מסתגלת', r:['PM','CSM','COACH'] },
+    ],
+  },
+  {
+    s:3,
+    q:'כמה חשוב לך סולם קידום ברור (ג\'וניור → סניור → רו"ח / מנהל)?',
+    ctx:'',
+    opts:[
+      { t:'חיוני — אני רוצה לדעת בדיוק לאן אני הולכת', r:['CPA','ERP','SA'] },
+      { t:'חשוב אבל לא חייב להיות פורמלי — רוצה צמיחה', r:['PM','BA','DATA'] },
+      { t:'לא קריטי — האיכות של העבודה חשובה יותר מהתואר', r:['COACH','CSM'] },
+      { t:'רוצה סולם, אבל לא דיל-ברייקר אם אין אחד', r:['IMPL','SCRUM','REGTECH'] },
+    ],
+  },
+  // SECTION E (Q20-Q24)
+  {
+    s:4,
+    q:'כשהבנק הכניס מודול Core Banking חדש, מה היה תפקידך האינסטינקטיבי?',
+    ctx:'',
+    opts:[
+      { t:'רציתי לכתוב את ה"איך זה עובד" — המדריך שכולם ישתמשו בו', r:['SA','BA','ERP'] },
+      { t:'רציתי לתאם את ההדרכות ולוודא שכל סניף עומד ב-Go-Live', r:['PM','IMPL','SCRUM'] },
+      { t:'הייתי המשתמשת הסופית — למדתי את המערכת ועבדתי איתה', r:['ERP','QA'] },
+      { t:'עשיתי את שניהם — תיעוד וגם תיאום', r:['BA','SA','PM'] },
+    ],
+  },
+  {
+    s:4,
+    q:'בשימוש בכלים כמו Excel, CRM, או דשבורדים, מה את בד"כ עושה?',
+    ctx:'',
+    opts:[
+      { t:'בונה דוחות, נוסחאות, ומודלים שאחרים משתמשים בהם', r:['DATA','SA','BA'] },
+      { t:'משתמשת בכלים שאחרים בנו כדי להפיק תוצרים שאני צריכה', r:['PM','CPA','CSM'] },
+      { t:'מגלה למה כלי מייצר תוצאה שגויה ועוקבת אחרי הלוגיקה', r:['SA','DATA','QA'] },
+      { t:'מלמדת עמיתות איך להשתמש בכלים ביעילות', r:['IMPL','ERP','COACH'] },
+    ],
+  },
+  {
+    s:4,
+    q:'האם כתבת פעם נוהל עבודה שמישהי אחרת ביצעה לאחר מכן?',
+    ctx:'',
+    opts:[
+      { t:'כן, הרבה פעמים — זה משהו שאני טובה בו ונהנית ממנו', r:['SA','BA','ERP'] },
+      { t:'כן, לפעמים, אבל זה לא האהוב עליי', r:['PM','IMPL'] },
+      { t:'לא, אבל אני חושבת שאוכל', r:['QA','CPA'] },
+      { t:'לא — כתיבה שיטתית כזו לא לגמרי בשבילי', r:['CSM','COACH','PM'] },
+    ],
+  },
+  {
+    s:4,
+    q:'כשמצאת אי-התאמה בדוח (יתרה שלא מסתדרת), מה הגישה שלך?',
+    ctx:'',
+    opts:[
+      { t:'עוקבת אחרי מקור הבעיה שלב אחרי שלב עד שמוצאת את שורש הגורם', r:['SA','DATA','QA'] },
+      { t:'מדווחת לבעלת הדוח ועוברת הלאה', r:['PM','IMPL','CPA'] },
+      { t:'מנסה לתקן לבד; אם לא מצליחה — מסלימה', r:['SA','QA','ERP'] },
+      { t:'מתעדת את האי-התאמה, הסיבה הצפויה, ופתרון מוצע — ומחלקת לצוות', r:['SA','REGTECH','BA'] },
+    ],
+  },
+  {
+    s:4,
+    q:'מתבקשת להעריך שתי מערכות לעיבוד הלוואות שהבנק שוקל לרכוש. על מה מתמקדת?',
+    ctx:'',
+    opts:[
+      { t:'כמה כל מערכת מתאימה לתהליכים הנוכחיים של הבנק — ואיפה תצטרכי להתאים תהליכים', r:['SA','ERP','BA'] },
+      { t:'האם לוח הזמנים של הספק ריאלי ומי ינהל את ההטמעה', r:['PM','IMPL'] },
+      { t:'ניתוח עלות-תועלת: כמה עולה כל מסלול ומה ה-ROI', r:['CPA','DATA'] },
+      { t:'כיצד פועלים אמצעי האבטחה, מסלול הביקורת, ודרישות התאימות', r:['REGTECH','CPA','SA'] },
+    ],
+  },
+];
+
+// ════════════════════════════════════════════
+// ROLE DESCRIPTIONS (next-step guidance per role)
+// ════════════════════════════════════════════
+const ROLE_RESULTS = {
+  PM:      { desc:'את מונעת על ידי תיאום ותקשורת. את נוחה להוביל ללא סמכות פורמלית. הרקע הפיננסי שלך הוא יתרון ייחודי בפינטק ובחברות תוכנה בנקאית.', steps:['חפשי תפקיד "Project Coordinator" או "Implementation Manager" בחברות SaaS', 'הירשמי לקורס Scrum Master (CSM) — 2 ימים + בחינה', 'הצטרפי לקבוצת פייסבוק "מנהלי פרויקטים ואנשי מוצר בהייטק הישראלי"', 'למדי את Jira (גרסה חינמית) ועבדי על פרויקט דמה'] },
+  SA:      { desc:'האינסטינקטים שלך הם ניתוח ותיעוד. הרקע שלך ממיגרציות מערכות ונהלי תאימות הוא מהחזקים שיש ל-BA ג\'וניורית.', steps:['חפשי "Business Analyst" או "Functional Analyst" בחברות אינטגרציה (Sela, Nili, Ness)', 'קורס UML / כתיבת מפרטים — Udemy, 10–20 שעות', 'תרגלי כתיבת User Stories על תהליך מהבנק שאת מכירה', 'שלחי LinkedIn למנתחות מערכות לשיחת קפה — הנטוורקינג הכי יעיל'] },
+  BA:      { desc:'פרופיל היברידי — גם תיעוד וגם תיאום. זוהי נקודת הכניסה הנפוצה ביותר לעוברות מהבנקאות להייטק.', steps:['חפשי "Business Analyst" בחברות פינטק ישראליות', 'הכיני דוגמת User Story ו-Process Flow מהבנק שיציגו יכולות', 'למדי Jira ו-Confluence (שניהם חינם לניסיון)', 'שלחי ל-2 חברות אינטגרציה קורות חיים עם דגש על תיעוד ו-UAT'] },
+  ERP:     { desc:'הידע שלך על תהליכים בנקאיים הוא בדיוק מה שחברות אינטגרציה ERP צריכות. לא נדרש קוד — נדרש הבנה עמוקה של תהליכי הנהלת חשבונות ותפעול.', steps:['פני ל-Sela Group, Nili Digital, עמנואל רוזן בע"מ, או Priority Software', 'הדגישי בקורות החיים ניסיון עם Core Banking ותהליכי Go-Live', 'בקשי מהמעסיקה הנוכחית להשתתף בפרויקט מיגרציה בתפקיד ה-Subject Matter Expert', 'קורס Priority / SAP מקדמי — יש גרסאות ניסיון חינמיות'] },
+  IMPL:    { desc:'תפקיד מבוסס תהליך ואנשים. שעות יציבות, עבודה ממשרד, עם לקוחות. מתאים מאוד.', steps:['חפשי "Implementation Specialist" ב-Monday, Tipalti, Papaya Global, Riskified', 'הכיני תיאור של פרויקט הטמעה שניהלת בבנק — זה ה-CV', 'ישיבת הכנה: כיצד לתאר Go-Live בנקאי במונחי הייטק', 'Udemy: "Customer Onboarding Best Practices" — 4 שעות'] },
+  CSM:     { desc:'יחסי הלקוחות שפיתחת בבנק הם הנכס שלך. CSM בחברות פינטק מחפשות בדיוק מישהי שמבינה ביוזר עסקי ויודעת לדבר בגובה העיניים.', steps:['חפשי "Customer Success Manager" בחברות פינטק: Payoneer, eToro, Lemonade', 'גרסת ניסיון של Salesforce CRM — תרגלי שימוש', 'קורס: "Customer Success Fundamentals" — Gainsight Academy, חינם', 'הכיני שלושה case studies מהבנק שמראים ניהול יחסי לקוח'] },
+  REGTECH: { desc:'ניסיון AML / KYC / רגולציה בנקאית הוא נדיר בשוק הייטק. חברות RegTech ישלמו פרמיה על הידע שלך.', steps:['חפשי "Compliance Analyst" / "AML Specialist" ב-Nice Actimize, Senofi, Fraud Intelligence', 'הצטרפי לקהילת RegTech ישראל בלינקדאין', 'קורי קורות חיים סביב הוראות בנק ישראל, FATF, ומדיניות AML שכתבת', 'שיחת קפה עם רגולטור / יועצת תאימות — לבחון מעבר לצד הטק'] },
+  DATA:    { desc:'אם אקסל הוא שפת האם שלך, Data Analyst היא צעד טבעי. SQL בסיסי לוקח 3–4 חודשים.', steps:['קורס SQL: "SQL for Data Analysis" — Mode Analytics, חינם', 'Power BI: מיקרוסופט מציעה קורס חינמי + אישור רשמי', 'פרויקט ניסיון: הורידי נתוני עסקאות פתוחים ובני דשבורד', 'חפשי "Junior Data Analyst" בחברות פיננסיות — Insurance, Fintech, Bank'] },
+  QA:      { desc:'ה-UAT שעשית בבנק הוא בדיוק QA ידני. זהו אחד ממסלולי הכניסה הקלים ביותר להייטק.', steps:['חפשי "QA Tester" / "QA Engineer" בחברות תוכנה פיננסית', 'קורס ISTQB Foundation Level — 2 חודשי לימוד, הסמכה בינלאומית', 'הכיני דוגמת Test Plan מפרויקט UAT מהבנק', 'תרגלי כתיבת Bug Reports ב-Jira (גרסה חינמית)'] },
+  SCRUM:   { desc:'מי שאוהבת תהליכים, מבנה, ועבודה עם אנשים — Scrum Master היא תפקיד שקט אך מרכזי.', steps:['הסמכת CSM: כנס 2 ימים + בחינה מקוונת (~$400)', 'קרי: "Scrum Guide" (scrum.org) — 13 עמודים, חינם', 'הירשמי לפגישות Meetup של Agile IL', 'חפשי "Scrum Master" בחברות בינוניות-גדולות (לא סטארטאפ בשלב מוקדם)'] },
+  COACH:   { desc:'הניסיון שלך בליווי לקוחות בהחלטות פיננסיות הוא בסיס מצוין לקואצ\'ינג. שימי לב: רוב הקואצ\'ים עובדים מהבית — אם את מחפשת משרד, חפשי תפקיד Corporate Coach בחברה גדולה.', steps:['קורס אימון: ICF-accredited — Coaching From The Inside Out (יש גרסה עברית)', 'בחני: האם תעדיפי קואצ\'ינג פיננסי — מנצלת את הרקע הבנקאי שלך', 'שלחי הצעה ל-HR של חברה גדולה לתפקיד "Employee Wellbeing" / "Internal Coach"', 'פגישת ניסיון: תציעי לשלוש חברות קואצ\'ינג פיגישת ניסיון חינם'] },
+  CPA:     { desc:'כללים ברורים, ביצועים מדויקים, סולם הסמכה מוגדר — זה בדיוק ה-CPA track. הרקע הבנקאי שלך (ביקורת, אשראי, דיווח רגולטורי) הוא יתרון משמעותי.', steps:['הירשמי לחשבונאות 1 — אוניברסיטה פתוחה מאפשרת גמישות', 'בחני התמחות בביקורת בנקים — הרקע הבנקאי שלך שווה שם יותר', 'שוחחי עם רואת חשבון שעבדה בבנק — להבין את המסלול מקרוב', '⚠️ זכרי: עונת שיא = פברואר–אפריל ✕ שנה-סוף. האם זה עובד עם חיי המשפחה?'] },
+};
+
+// ════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════
+let currentQ = 0;
+let answers  = new Array(QUESTIONS.length).fill(null); // index of selected option
+let scores   = {};
+
+// ════════════════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════════════════
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ════════════════════════════════════════════
+// BUILD GLOSSARY
+// ════════════════════════════════════════════
+function buildGlossary() {
+  const el = document.getElementById('glossary-list');
+  el.innerHTML = '';
+  GLOSSARY.forEach(g => {
+    const div = document.createElement('div');
+    div.className = 'glossary-item';
+    div.innerHTML = `
+      <div class="glossary-term">${g.term}</div>
+      <div class="glossary-def">${g.def}</div>
+      <div class="glossary-bank">${g.bank}</div>
+    `;
+    el.appendChild(div);
+  });
+}
+
+// ════════════════════════════════════════════
+// BUILD ROLES
+// ════════════════════════════════════════════
+function buildRoles() {
+  const el = document.getElementById('roles-list');
+  el.innerHTML = '';
+  ROLES.forEach(role => {
+    const hoursClass = role.hours === 'נמוך' ? 'badge-green' : role.hours === 'בינוני' ? 'badge-yellow' : 'badge-red';
+    const officeClass = role.office === 'גבוה' ? 'badge-green' : role.office === 'בינוני' ? 'badge-yellow' : 'badge-red';
+    const card = document.createElement('div');
+    card.className = 'role-card';
+    card.dataset.id = role.id;
+    card.innerHTML = `
+      <div class="role-card-header" onclick="toggleRole('${role.id}')">
+        <div class="role-icon">${role.icon}</div>
+        <div class="role-meta">
+          <div class="role-title">${role.he}</div>
+          <div class="role-title-en">${role.en}</div>
+        </div>
+        <div class="role-badges">
+          <span class="badge ${hoursClass}">${role.hours === 'נמוך' ? 'שעות ✓' : role.hours === 'בינוני' ? 'שעות ~' : 'שעות ⚠'}</span>
+          <span class="badge ${officeClass}">${role.office === 'גבוה' ? 'משרד ✓' : 'משרד ~'}</span>
+          ${role.coding ? `<span class="badge badge-yellow">${role.coding}</span>` : ''}
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="role-expand" id="expand-${role.id}">
+        <div class="role-summary">${role.summary}</div>
+        <div class="role-day-label">יום עבודה טיפוסי</div>
+        <ul class="role-day-list">
+          ${role.day.map(d => `<li>${d}</li>`).join('')}
+        </ul>
+        <div class="role-note">${role.note}</div>
+      </div>
+    `;
+    el.appendChild(card);
+  });
+}
+
+function toggleRole(id) {
+  const expand = document.getElementById('expand-' + id);
+  const card   = document.querySelector('[data-id="' + id + '"]');
+  const isOpen = expand.classList.contains('open');
+  document.querySelectorAll('.role-expand').forEach(e => e.classList.remove('open'));
+  document.querySelectorAll('.role-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) {
+    expand.classList.add('open');
+    card.classList.add('open');
+  }
+}
+
+// ════════════════════════════════════════════
+// QUIZ
+// ════════════════════════════════════════════
+function startQuiz() {
+  currentQ = 0;
+  answers  = new Array(QUESTIONS.length).fill(null);
+  scores   = {};
+  go('screen-quiz');
+  renderQ();
+}
+
+function renderQ() {
+  const q = QUESTIONS[currentQ];
+  const total = QUESTIONS.length;
+
+  // progress
+  document.getElementById('quiz-progress-bar').style.width = ((currentQ / total) * 100) + '%';
+  document.getElementById('quiz-progress-count').textContent = `${currentQ + 1} / ${total}`;
+  document.getElementById('quiz-section-tag').textContent = SECTIONS[q.s];
+
+  // prev/next buttons
+  document.getElementById('quiz-prev').style.display = currentQ > 0 ? 'block' : 'none';
+  const nextBtn = document.getElementById('quiz-next');
+  const nextLabel = document.getElementById('quiz-next-label');
+  if (currentQ === total - 1) {
+    nextLabel.textContent = 'לתוצאות ←';
+  } else {
+    nextLabel.textContent = 'הבאה ←';
+  }
+
+  // body
+  const body = document.getElementById('quiz-body');
+  body.innerHTML = '';
+
+  const qText = document.createElement('div');
+  qText.className = 'question-text';
+  qText.textContent = q.q;
+  body.appendChild(qText);
+
+  if (q.ctx) {
+    const ctx = document.createElement('div');
+    ctx.className = 'question-context';
+    ctx.textContent = q.ctx;
+    body.appendChild(ctx);
+  }
+
+  const list = document.createElement('div');
+  list.className = 'answer-list';
+
+  const letters = ['א', 'ב', 'ג', 'ד'];
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn' + (answers[currentQ] === i ? ' selected' : '');
+    btn.onclick = () => selectAnswer(i);
+    btn.innerHTML = `
+      <span class="answer-letter">${letters[i]}</span>
+      <span class="answer-text">${opt.t}</span>
+    `;
+    list.appendChild(btn);
+  });
+
+  body.appendChild(list);
+  window.scrollTo(0,0);
+}
+
+function selectAnswer(i) {
+  answers[currentQ] = i;
+  document.querySelectorAll('.answer-btn').forEach((btn, idx) => {
+    btn.classList.toggle('selected', idx === i);
+  });
+}
+
+function nextQ() {
+  if (answers[currentQ] === null) {
+    // gentle nudge — shake the unanswered question
+    document.querySelectorAll('.answer-list')[0].style.animation = 'none';
+    setTimeout(() => {
+      const list = document.querySelectorAll('.answer-list')[0];
+      if (list) list.style.animation = 'pulse 0.4s ease';
+    }, 10);
+    return;
+  }
+  if (currentQ < QUESTIONS.length - 1) {
+    currentQ++;
+    renderQ();
+  } else {
+    showResults();
+  }
+}
+
+function prevQ() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQ();
+  }
+}
+
+// ════════════════════════════════════════════
+// SCORING
+// ════════════════════════════════════════════
+function showResults() {
+  scores = {};
+  ROLES.forEach(r => { scores[r.id] = 0; });
+
+  QUESTIONS.forEach((q, qi) => {
+    const ai = answers[qi];
+    if (ai === null) return;
+    const roleIds = q.opts[ai].r;
+    roleIds.forEach(rid => {
+      if (rid in scores) scores[rid]++;
+    });
+  });
+
+  // Special case: CPA_RISK penalizes CPA (hours concern)
+  if (scores['CPA_RISK']) {
+    scores['CPA'] = (scores['CPA'] || 0) - scores['CPA_RISK'];
+    delete scores['CPA_RISK'];
+  }
+
+  // Sort roles by score
+  const sorted = Object.entries(scores)
+    .sort((a, b) => b[1] - a[1])
+    .filter(([, v]) => v > 0);
+
+  const maxScore = sorted[0]?.[1] || 1;
+
+  go('screen-results');
+
+  const body = document.getElementById('results-body');
+  body.innerHTML = '';
+
+  // Top matches (top 3)
+  const topSection = document.createElement('div');
+  topSection.innerHTML = '<div class="section-title">ההתאמות הטובות ביותר</div>';
+  sorted.slice(0, 3).forEach(([rid, score], idx) => {
+    const role = ROLES.find(r => r.id === rid);
+    const info = ROLE_RESULTS[rid];
+    if (!role || !info) return;
+    const pct = Math.round((score / maxScore) * 100);
+    const card = document.createElement('div');
+    card.className = 'result-match' + (idx === 0 ? ' top' : '');
+    card.innerHTML = `
+      <div class="result-rank">${idx === 0 ? '✦ ההתאמה הכי גבוהה' : idx === 1 ? '· מקום שני' : '· מקום שלישי'}</div>
+      <div class="result-role-name">${role.icon} ${role.he}</div>
+      <div class="score-bar-row">
+        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${pct}%"></div></div>
+        <div class="score-pct">${pct}%</div>
+      </div>
+      <div class="result-desc">${info.desc}</div>
+      <div class="result-steps-label">צעדים ראשונים</div>
+      <ul class="result-steps">${info.steps.map(s => `<li>${s}</li>`).join('')}</ul>
+    `;
+    topSection.appendChild(card);
+  });
+  body.appendChild(topSection);
+
+  // Hours & office filter
+  const filterSection = document.createElement('div');
+  filterSection.style.marginTop = '32px';
+  filterSection.innerHTML = '<div class="section-title">שעות ✕ עבודה ממשרד — השוואה</div>';
+  const table = document.createElement('table');
+  table.className = 'filter-table';
+  table.innerHTML = `
+    <thead><tr>
+      <th>תפקיד</th><th>שעות</th><th>משרד</th>
+    </tr></thead>
+    <tbody>
+      ${sorted.slice(0, 6).map(([rid]) => {
+        const role = ROLES.find(r => r.id === rid);
+        if (!role) return '';
+        const hClass = role.hours === 'נמוך' ? 'td-good' : role.hours === 'בינוני' ? 'td-warn' : 'td-bad';
+        const oClass = role.office === 'גבוה' ? 'td-good' : role.office === 'בינוני' ? 'td-warn' : 'td-bad';
+        return `<tr>
+          <td class="td-role">${role.icon} ${role.he}</td>
+          <td class="${hClass}">${role.hours}</td>
+          <td class="${oClass}">${role.office}</td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  `;
+  filterSection.appendChild(table);
+  body.appendChild(filterSection);
+
+  // Accounting courses note
+  const acctSection = document.createElement('div');
+  acctSection.style.marginTop = '28px';
+  acctSection.innerHTML = `
+    <div class="section-title">האם כדאי לך ללמוד חשבונאות 1-2-3?</div>
+    <div class="card">
+      <div id="acct-advice"></div>
+    </div>
+  `;
+  body.appendChild(acctSection);
+
+  const top3Ids = sorted.slice(0, 3).map(([rid]) => rid);
+  const acctDiv = acctSection.querySelector('#acct-advice');
+  if (top3Ids.includes('CPA')) {
+    acctDiv.innerHTML = `<span style="color:var(--accent);font-weight:700;">כן — הכרחי.</span> <span style="font-size:13px;line-height:1.6;display:block;margin-top:4px;">מסלול רו"ח דורש חשבונאות 1 כדי להיכנס להתמחות. התחילי בחשבונאות 1 ובחני את ההחלטה.</span>`;
+  } else if (top3Ids.some(id => ['SA','BA','PM','IMPL','ERP'].includes(id))) {
+    acctDiv.innerHTML = `<span style="color:#c8a850;font-weight:700;">לא נדרש — אבל לא מזיק.</span> <span style="font-size:13px;line-height:1.6;display:block;margin-top:4px;">עבור התפקידים המובילים שלך, הניסיון הבנקאי שלך מספיק. קורסי חשבונאות לא יקדמו את הקו"ח שלך לתפקידי הייטק. השקיעי את הזמן בלמידת Jira / SQL / כתיבת מפרטים במקום.</span>`;
+  } else {
+    acctDiv.innerHTML = `<span style="color:var(--sub);font-size:13px;line-height:1.6;">לקורסי חשבונאות יש ערך בעיקר למסלול רו"ח. עבור שאר התפקידים — ההשקעה בלמידה טכנולוגית (SQL, Jira, Power BI) תחזיר יותר.</span>`;
+  }
+}
+
+// ════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════
+buildGlossary();
+buildRoles();
+</script>
+</body>
+</html>
